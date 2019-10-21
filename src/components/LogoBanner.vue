@@ -1,7 +1,7 @@
 <template>
   <div class="logo-banner">
     <div class="logo-wrapper">
-      <logo></logo>
+      <Logo />
     </div>
     <h2>VIDEO PLAYER</h2>
   </div>

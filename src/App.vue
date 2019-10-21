@@ -2,18 +2,30 @@
   <div id="app">
     <Header />
     <LogoBanner />
+    <VideoPlayer :videos="videos"/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import LogoBanner from './components/LogoBanner.vue'
+import VideoPlayer from './components/VideoPlayer'
 
 export default {
+  data: function () {
+    return {
+      videos: [
+        { path: 'who_is_24g' },
+        { path: 'future_of_drones' },
+        { path: 'ces_overview' }
+      ]
+    }
+  },
   name: 'app',
   components: {
     Header,
-    LogoBanner
+    LogoBanner,
+    VideoPlayer
   }
 }
 </script>

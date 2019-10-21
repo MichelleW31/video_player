@@ -1,13 +1,20 @@
 <template>
   <div class="thumbnail-wrapper">
-      <img v-for="video in videos" :key="video.path" class="thumbnails" :src="require(`../assets/images/${video.path}.jpg`)" :alt="video.path">
+      <img v-for="video in videos" :key="video.path" @click="selectVideo(video.path)" class="thumbnails" :src="require(`../assets/images/${video.path}.jpg`)" :alt="video.path">
   </div>
 </template>
 
 <script>
+import { eventBus } from '../main'
+
 export default {
   name: 'Thumbnails',
-  props: ['videos']
+  props: ['videos'],
+  methods: {
+    selectVideo (video) {
+      eventBus.$emit('videoSelected', video)
+    }
+  }
 }
 </script>
 
@@ -15,7 +22,7 @@ export default {
   .thumbnail-wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 50px 80px 0;
+    padding: 50px 30px 0;
   }
 
   .thumbnails {

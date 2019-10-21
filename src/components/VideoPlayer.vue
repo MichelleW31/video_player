@@ -1,8 +1,8 @@
 <template>
   <div class="video-player">
-    <h3>{{selected_video}}</h3>
+    <h3>{{selected_video.title}}</h3>
     <div class="video">
-      <video controls :src="require(`../assets/videos/${selected_video}.mp4`)"></video>
+      <video controls :src="require(`../assets/videos/${selected_video.path}.mp4`)"></video>
     </div>
     <hr />
     <Thumbnails :videos="videos"/>
@@ -16,7 +16,7 @@ import Thumbnails from './Thumbnails.vue'
 export default {
   data: function () {
     return {
-      selected_video: 'who_is_24g'
+      selected_video: { title: 'Who is 24g', path: 'who_is_24g' }
     }
   },
   name: 'VideoPlayer',
@@ -37,9 +37,17 @@ export default {
 
 <style>
   .video-player {
-    padding: 100px 50px;
+    padding: 95px 50px;
   }
+
+  h3 {
+    color: #393e3c;
+    font-size: 2.7rem;
+    padding-bottom: 40px;
+  }
+
   video{
-    width: 70%;
+    padding-bottom: 50px;
+    width: 100%;
   }
 </style>

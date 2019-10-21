@@ -15,9 +15,9 @@ export default {
   data: function () {
     return {
       videos: [
-        { path: 'who_is_24g' },
-        { path: 'future_of_drones' },
-        { path: 'ces_overview' }
+        { title: 'Who Is 24g', path: 'who_is_24g' },
+        { title: 'Future of Drones', path: 'future_of_drones' },
+        { title: 'Ces Overview', path: 'ces_overview' }
       ]
     }
   },

@@ -1,7 +1,10 @@
 <template>
   <div class="video-player">
-    {{selected_video}}
-    <hr>
+    <h3>{{selected_video}}</h3>
+    <div class="video">
+      <video controls :src="require(`../assets/videos/${selected_video}.mp4`)"></video>
+    </div>
+    <hr />
     <Thumbnails :videos="videos"/>
   </div>
 </template>
@@ -26,6 +29,7 @@ export default {
   created () {
     eventBus.$on('videoSelected', (video) => {
       this.selected_video = video
+      console.log('from vp', video)
     })
   }
 }
@@ -34,5 +38,8 @@ export default {
 <style>
   .video-player {
     padding: 100px 50px;
+  }
+  video{
+    width: 70%;
   }
 </style>

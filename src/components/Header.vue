@@ -7,9 +7,6 @@
 <script>
 export default {
   name: 'Header'
-  // props: {
-  //
-  // }
 }
 </script>
 
@@ -18,13 +15,13 @@ export default {
   .header {
     background: #009ddb;
     font-family: 'BrandonLight', Arial, sans-serif;
-    padding: 70px 50px;
+    padding: 50px 50px;
   }
 
   .header-title {
     color: white;
     font-weight: 100;
-    font-size: 2rem;
+    font-size: 2.1rem;
     text-align: left;
   }
 

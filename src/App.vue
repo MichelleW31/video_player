@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Header />
+    <LogoBanner />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import LogoBanner from './components/LogoBanner.vue'
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    LogoBanner
   }
 }
 </script>
@@ -68,7 +71,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
     margin: 0;
     padding: 0;
   }

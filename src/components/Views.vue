@@ -1,6 +1,6 @@
 <template>
   <div class="views-wrapper">
-    <h3>{{selected_video.title}} , {{selected_video.views}} Views</h3>
+    <h3>{{selected_video.views}} Views</h3>
     <hr>
   </div>
 </template>

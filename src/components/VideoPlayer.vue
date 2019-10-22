@@ -1,30 +1,52 @@
 <template>
-  <div class="video-player">
-    <h3>{{selected_video.title}}</h3>
-    <div class="video">
-      <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
+  <div>
+    <div class="video-player">
+      <h3>{{selected_video.title}}</h3>
+      <div class="video">
+        <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
+      </div>
+    </div>
+    <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
+    <div class="views-and-likes">
+      <h3>{{selected_video.views}} Views</h3>
+      <h3>{{selected_video.likes}} Likes {{selected_video.dislikes}} Dislikes</h3>
     </div>
   </div>
 </template>
 
 <script>
+import Thumbnails from './Thumbnails.vue'
 
+let videos = [
+  { title: 'Who Is 24g', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0 },
+  { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0 },
+  { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0 }
+]
 export default {
+  data: function () {
+    return {
+      videos,
+      selected_video: {}
+    }
+  },
   name: 'VideoPlayer',
-  props: [
-    'videos',
-    'selected_video'
-  ]
-  // updated () {
-  //   let video = this.selected_video
-  //   let v = document.getElementById(`${this.selected_video.path}_video`)
-  //   v.addEventListener('play', function () {
-  //     // this.$emit('videoWasViewed', views)
-  //     console.log(v)
-  //     // console.log(video)
-  //     // console.log('inside event listener', video.title, video.views)
-  //   })
-  // }
+  components: {
+    Thumbnails
+  },
+  methods: {
+    increaseViews () {
+      this.selected_video.views += 1
+    }
+  },
+  watch: {
+    selected_video: function (val) {
+      this.increaseViews()
+    }
+  },
+  created () {
+    this.selected_video = this.videos[0]
+  }
+
 }
 </script>
 

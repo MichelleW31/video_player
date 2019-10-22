@@ -2,11 +2,7 @@
   <div id="app">
     <Header />
     <LogoBanner />
-    <VideoPlayer :selected_video="selected_video" :videos="videos"/>
-    <div class="views-and-likes">
-      <Views :selected_video="selected_video" />
-    </div>
-    <Thumbnails :videos="videos" @videoSelected="selected_video=$event"/>
+    <VideoPlayer />
   </div>
 </template>
 
@@ -14,40 +10,13 @@
 import Header from './components/Header.vue'
 import LogoBanner from './components/LogoBanner.vue'
 import VideoPlayer from './components/VideoPlayer'
-import Thumbnails from './components/Thumbnails'
-import Views from './components/Views'
 
 export default {
-  data: function () {
-    return {
-      videos: [
-        { title: 'Who Is 24g', path: 'who_is_24g', views: 0, likes: 0 },
-        { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0 },
-        { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0 }
-      ],
-      selected_video: {}
-    }
-  },
   name: 'app',
   components: {
     Header,
     LogoBanner,
-    VideoPlayer,
-    Thumbnails,
-    Views
-  },
-  methods: {
-    increaseViews () {
-      this.selected_video.views += 1
-    }
-  },
-  watch: {
-    selected_video: function (val) {
-      this.increaseViews()
-    }
-  },
-  created () {
-    this.selected_video = this.videos[0]
+    VideoPlayer
   }
 }
 </script>

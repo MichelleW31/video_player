@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import { eventBus } from '../main'
 
 export default {
   name: 'Thumbnails',
   props: ['videos'],
   methods: {
     selectVideo (video) {
-      eventBus.$emit('videoSelected', video)
+      this.$emit('videoSelected', video)
     }
   }
 }
@@ -22,7 +21,7 @@ export default {
   .thumbnail-wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 50px 30px 0;
+    padding: 50px 80px 0;
   }
 
   .thumbnails {

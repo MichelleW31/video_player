@@ -2,42 +2,35 @@
   <div class="video-player">
     <h3>{{selected_video.title}}</h3>
     <div class="video">
-      <video controls :src="require(`../assets/videos/${selected_video.path}.mp4`)"></video>
+      <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
     </div>
-    <hr />
-    <Thumbnails :videos="videos"/>
   </div>
 </template>
 
 <script>
-import { eventBus } from '../main'
-import Thumbnails from './Thumbnails.vue'
 
 export default {
-  data: function () {
-    return {
-      selected_video: { title: 'Who is 24g', path: 'who_is_24g' }
-    }
-  },
   name: 'VideoPlayer',
   props: [
-    'videos'
-  ],
-  components: {
-    Thumbnails
-  },
-  created () {
-    eventBus.$on('videoSelected', (video) => {
-      this.selected_video = video
-      console.log('from vp', video)
-    })
-  }
+    'videos',
+    'selected_video'
+  ]
+  // updated () {
+  //   let video = this.selected_video
+  //   let v = document.getElementById(`${this.selected_video.path}_video`)
+  //   v.addEventListener('play', function () {
+  //     // this.$emit('videoWasViewed', views)
+  //     console.log(v)
+  //     // console.log(video)
+  //     // console.log('inside event listener', video.title, video.views)
+  //   })
+  // }
 }
 </script>
 
 <style>
   .video-player {
-    padding: 95px 50px;
+    padding: 95px 50px 0;
   }
 
   h3 {
@@ -47,7 +40,7 @@ export default {
   }
 
   video{
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     width: 100%;
   }
 </style>

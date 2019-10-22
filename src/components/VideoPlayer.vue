@@ -1,16 +1,17 @@
 <template>
-  <div>
+  <div id = video_player>
     <div class="video-player">
       <h3>{{selected_video.title}}</h3>
       <div class="video">
         <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
       </div>
     </div>
-    <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
     <div class="views-and-likes">
-      <h3>{{selected_video.views}} Views</h3>
-      <h3>{{selected_video.likes}} Likes {{selected_video.dislikes}} Dislikes</h3>
+      <h4>{{selected_video.views}} views</h4>
+      <h4>{{selected_video.likes}} Likes {{selected_video.dislikes}} Dislikes</h4>
     </div>
+    <hr>
+    <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
   </div>
 </template>
 
@@ -51,12 +52,11 @@ export default {
 </script>
 
 <style>
-  .video-player {
+  #video_player{
     padding: 95px 50px 0;
   }
 
   h3 {
-    color: #393e3c;
     font-size: 2.7rem;
     padding-bottom: 40px;
   }
@@ -64,5 +64,15 @@ export default {
   video{
     padding-bottom: 30px;
     width: 100%;
+  }
+
+  .views-and-likes {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+  }
+
+  h4 {
+    font-size: 1.6rem;
   }
 </style>

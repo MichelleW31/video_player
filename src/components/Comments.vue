@@ -4,10 +4,10 @@
     <textarea name="comments" id="comments" cols="90" rows="10" placeholder="Type up a sweet comment..."></textarea>
     <p id="error-message" class="no-display">Please enter a comment to submit.</p>
     <div class="submit-wrapper">
-      <button class="submit" @click="submitComment">add comment</button>
+      <button class="submit" @click="submitComment(selected_video)">add comment</button>
     </div>
     <div class="comment-section">
-      <Comment v-for="comment in comments" :key="comment" :comment="comment"/>
+      <Comment v-for="comment in selected_video.comments" :key="comment" :comment="comment"/>
     </div>
   </div>
 </template>
@@ -18,25 +18,22 @@ import Comment from './Comment'
 export default {
   data: function () {
     return {
-      comments: [],
-      submitted_comment: ''
+      comments: []
     }
   },
   name: 'Comments',
+  props: ['selected_video'],
   methods: {
-    submitComment () {
+    submitComment (video) {
       let textArea = document.getElementById('comments')
-      let comment = textArea.value
       let error = document.getElementById('error-message')
+      let comment = textArea.value
       if (textArea.value === '') {
         error.classList.remove('no-display')
       } else {
         error.classList.add('no-display')
-        this.submitted_comment = comment
-        this.comments.push(this.submitted_comment)
+        video.comments.push(comment)
         textArea.value = ''
-        console.log('comments array', this.comments)
-        console.log('comment submitted', this.submitted_comment)
       }
     }
   },
@@ -80,6 +77,7 @@ export default {
   .submit-wrapper {
     display: flex;
     justify-content: flex-start;
+    margin: 25px 0 45px;
   }
 
   .submit {
@@ -89,14 +87,8 @@ export default {
     font-family: BrandonLight, Arial, sans-serif;
     font-size: 2.5rem;
     letter-spacing: 1px;
-    margin-top: 25px;
     padding: 10px 0;
     text-align: center;
     width: 75%;
-  }
-
-  .submit:hover {
-    background: #e58c1b;
-    cursor: pointer;
   }
 </style>

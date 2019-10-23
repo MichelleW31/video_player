@@ -12,7 +12,7 @@
     </div>
     <hr>
     <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
-    <Comments />
+    <Comments :selected_video="selected_video"/>
   </div>
 </template>
 
@@ -22,9 +22,9 @@ import LikesDislikes from './LikesDislikes'
 import Comments from './Comments'
 
 let videos = [
-  { title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0 },
-  { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0 },
-  { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0 }
+  { title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0, comments: [] },
+  { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0, comments: [] },
+  { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0, comments: [] }
 ]
 export default {
   data: function () {

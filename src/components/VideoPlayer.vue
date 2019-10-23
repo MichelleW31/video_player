@@ -8,7 +8,7 @@
     </div>
     <div class="views-and-likes">
       <h4>{{selected_video.views}} views</h4>
-      <h4>{{selected_video.likes}} Likes {{selected_video.dislikes}} Dislikes</h4>
+      <LikesDislikes :selected_video="selected_video"/>
     </div>
     <hr>
     <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
@@ -17,9 +17,10 @@
 
 <script>
 import Thumbnails from './Thumbnails.vue'
+import LikesDislikes from './LikesDislikes'
 
 let videos = [
-  { title: 'Who Is 24g', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0 },
+  { title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0 },
   { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0 },
   { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0 }
 ]
@@ -32,7 +33,8 @@ export default {
   },
   name: 'VideoPlayer',
   components: {
-    Thumbnails
+    Thumbnails,
+    LikesDislikes
   },
   methods: {
     increaseViews () {
@@ -61,6 +63,10 @@ export default {
     padding-bottom: 40px;
   }
 
+  h4 {
+    font-size: 1.6rem;
+  }
+
   video{
     padding-bottom: 30px;
     width: 100%;
@@ -70,9 +76,5 @@ export default {
     display: flex;
     justify-content: space-between;
     padding-bottom: 40px;
-  }
-
-  h4 {
-    font-size: 1.6rem;
   }
 </style>

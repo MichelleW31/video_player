@@ -2,11 +2,11 @@
   <div class="likes-dislikes">
     <div class="likes">
       <LikeIcon :addLike="addLike"/>
-      <h4>{{selected_video.likes}}</h4>
+      <h4 class="likes-copy">{{selected_video.likes}}</h4>
     </div>
     <div class = "dislikes">
       <DislikeIcon :addDislike="addDislike" />
-      <h4>{{selected_video.dislikes}} </h4>
+      <h4 class="dislikes-copy">{{selected_video.dislikes}} </h4>
     </div>
   </div>
 </template>
@@ -46,6 +46,10 @@ export default {
 
   .likes {
     margin-right: 30px;
+  }
+
+  .likes-copy, .dislikes-copy {
+    font-size: 2.1rem;
   }
 
   h4 {

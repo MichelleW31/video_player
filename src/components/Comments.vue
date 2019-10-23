@@ -6,23 +6,42 @@
     <div class="submit-wrapper">
       <button class="submit" @click="submitComment">add comment</button>
     </div>
+    <div class="comment-section">
+      <Comment v-for="comment in comments" :key="comment" :comment="comment"/>
+    </div>
   </div>
 </template>
 
 <script>
+import Comment from './Comment'
+
 export default {
+  data: function () {
+    return {
+      comments: [],
+      submitted_comment: ''
+    }
+  },
   name: 'Comments',
   methods: {
     submitComment () {
       let textArea = document.getElementById('comments')
+      let comment = textArea.value
       let error = document.getElementById('error-message')
       if (textArea.value === '') {
         error.classList.remove('no-display')
       } else {
         error.classList.add('no-display')
+        this.submitted_comment = comment
+        this.comments.push(this.submitted_comment)
         textArea.value = ''
+        console.log('comments array', this.comments)
+        console.log('comment submitted', this.submitted_comment)
       }
     }
+  },
+  components: {
+    Comment
   }
 }
 </script>
@@ -74,5 +93,10 @@ export default {
     padding: 10px 0;
     text-align: center;
     width: 75%;
+  }
+
+  .submit:hover {
+    background: #e58c1b;
+    cursor: pointer;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <svg class = like-icon width="30px" height="29px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <svg @click="addLike" class = like-icon width="30px" height="29px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <title>thumbs_up</title>
     <desc>Created with Sketch.</desc>
     <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -14,7 +14,10 @@
 
 <script>
 export default {
-  name: 'LikeIcon'
+  name: 'LikeIcon',
+  props: [
+    'addLike'
+  ]
 }
 </script>
 

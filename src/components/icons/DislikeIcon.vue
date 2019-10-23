@@ -1,5 +1,5 @@
 <template>
-  <svg class="dislike-icon" width="30px" height="29px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <svg @click="addDislike" class="dislike-icon" width="30px" height="29px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
       <g id="02-Desktop---Video-Player" transform="translate(-719.000000, -687.000000)" fill="#FAA61A">
         <g id="Video-Stats" transform="translate(50.000000, 680.000000)">
@@ -12,7 +12,10 @@
 
 <script>
 export default {
-  name: 'DislikeIcon'
+  name: 'DislikeIcon',
+  props: [
+    'addDislike'
+  ]
 }
 </script>
 

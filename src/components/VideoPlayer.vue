@@ -42,7 +42,7 @@ export default {
     }
   },
   watch: {
-    selected_video: function (val) {
+    selected_video: function () {
       this.increaseViews()
     }
   },

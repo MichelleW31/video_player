@@ -1,11 +1,11 @@
 <template>
   <div class="likes-dislikes">
     <div class="likes">
-      <LikeIcon />
+      <LikeIcon :addLike="addLike"/>
       <h4>{{selected_video.likes}}</h4>
     </div>
     <div class = "dislikes">
-      <DislikeIcon />
+      <DislikeIcon :addDislike="addDislike" />
       <h4>{{selected_video.dislikes}} </h4>
     </div>
   </div>
@@ -21,6 +21,14 @@ export default {
   components: {
     LikeIcon,
     DislikeIcon
+  },
+  methods: {
+    addLike () {
+      this.selected_video.likes += 1
+    },
+    addDislike () {
+      this.selected_video.dislikes += 1
+    }
   }
 }
 </script>

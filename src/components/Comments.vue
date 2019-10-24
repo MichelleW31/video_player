@@ -56,6 +56,8 @@ export default {
 
   #comments {
     border: 2px solid #d1d1d1;
+    font-family: BrandonRegular, Arial, sans-serif;
+    font-size: 1.4rem;
     height: 220px;
     width: 100%;
   }

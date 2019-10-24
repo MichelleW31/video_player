@@ -5,12 +5,15 @@
     </div>
     <div class="comment-copy">
       <h4>{{name}}</h4>
+      <TimeSince />
       <p>{{comment}}</p>
     </div>
   </div>
 </template>
 
 <script>
+import TimeSince from './TimeSince'
+
 export default {
   data: function () {
     return {
@@ -21,7 +24,10 @@ export default {
   props: [
     'submitted_comment',
     'comment'
-  ]
+  ],
+  components: {
+    TimeSince
+  }
 }
 </script>
 

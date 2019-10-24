@@ -3,20 +3,23 @@
     <Header />
     <LogoBanner />
     <VideoPlayer />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import LogoBanner from './components/LogoBanner.vue'
+import Header from './components/Header'
+import LogoBanner from './components/LogoBanner'
 import VideoPlayer from './components/VideoPlayer'
+import Footer from './components/icons/Footer.vue'
 
 export default {
   name: 'app',
   components: {
     Header,
     LogoBanner,
-    VideoPlayer
+    VideoPlayer,
+    Footer
   }
 }
 </script>

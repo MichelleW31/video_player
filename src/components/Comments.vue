@@ -25,6 +25,7 @@ export default {
   props: ['selected_video'],
   methods: {
     submitComment (video) {
+      this.$emit('commentSubmit')
       let textArea = document.getElementById('comments')
       let error = document.getElementById('error-message')
       let comment = textArea.value

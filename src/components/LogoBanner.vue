@@ -38,4 +38,22 @@ export default {
     letter-spacing: 4px;
   }
 
+  @media (min-width: 900px) {
+    .logo-banner {
+      align-items: center;
+      display: flex;
+      padding: 70px 0;
+    }
+
+    .logo-wrapper {
+      margin: 0 30px 0 80px;
+      padding-bottom: 0;
+      width: 14%;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+
 </style>

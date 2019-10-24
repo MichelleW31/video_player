@@ -28,4 +28,14 @@ export default {
   .user{
     font-family: BrandonRegular, Arial, sans-serif;
   }
+
+  @media (min-width: 900px) {
+    .header {
+      padding: 20px 95px;
+    }
+
+    .header-title {
+      font-size: 1rem;
+    }
+  }
 </style>

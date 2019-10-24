@@ -56,4 +56,10 @@ export default {
     font-size: 1.8rem;
     text-align: left;
   }
+
+  @media (min-width: 900px) {
+    .comment-copy h4, .comment-copy p {
+      font-size: .9rem;
+    }
+  }
 </style>

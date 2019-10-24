@@ -31,7 +31,7 @@ export default {
 
   @media (min-width: 900px) {
     .header {
-      padding: 20px 95px;
+      padding: 20px 100px;
     }
 
     .header-title {

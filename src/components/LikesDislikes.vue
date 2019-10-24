@@ -55,4 +55,10 @@ export default {
   h4 {
     color: #faa61a;
   }
+
+  @media (min-width: 900px) {
+    .likes-copy, .dislikes-copy {
+      font-size: 1rem;
+    }
+  }
 </style>

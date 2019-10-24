@@ -17,4 +17,11 @@ export default {
     padding: 80px 0;
     width: 50%;
   }
+
+  @media (min-width: 900px) {
+    .footer_logo {
+      padding: 60px 0 40px;
+      width: 20%;
+    }
+  }
 </style>

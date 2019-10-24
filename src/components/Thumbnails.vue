@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .thumbnail-wrapper {
     display: flex;
     justify-content: space-between;
@@ -26,5 +26,18 @@ export default {
 
   .thumbnails {
     width: 29%;
+  }
+
+  @media (min-width: 900px) {
+    .thumbnail-wrapper {
+      align-items: flex-end;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .thumbnails {
+      margin-bottom: 32px;
+      width: 80%;
+    }
   }
 </style>

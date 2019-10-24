@@ -21,4 +21,10 @@ export default {
     font-size: 1.8rem;
     text-align: left;
   }
+
+  @media (min-width: 900px) {
+    p {
+      font-size: 1rem;
+    }
+  }
 </style>

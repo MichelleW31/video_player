@@ -1,5 +1,5 @@
 <template>
-  <div class="comments">
+  <div class="comments-wrapper">
     <h4 class="comments-title">Comments</h4>
     <textarea name="comments" id="comments" cols="90" rows="10" placeholder="Type up a sweet comment..."></textarea>
     <p id="error-message" class="no-display">Please enter a comment to submit.</p>
@@ -45,10 +45,6 @@ export default {
 </script>
 
 <style>
-  .comments {
-
-  }
-
   .comments-title {
     font-size: 2.3rem;
     margin: 40px 0;
@@ -93,5 +89,29 @@ export default {
     padding: 10px 0;
     text-align: center;
     width: 75%;
+  }
+
+  @media (min-width: 900px) {
+    .comments-title {
+      font-size: 1rem;
+    }
+
+    #comments, #comments::placeholder {
+      font-size: 1rem;
+    }
+
+    .comments-wrapper {
+      width: 77%;
+    }
+
+    #error-message {
+      text-align: left;
+    }
+
+    .submit {
+      font-size: 1.1rem;
+      padding: 20px 0;
+      width: 50%;
+    }
   }
 </style>

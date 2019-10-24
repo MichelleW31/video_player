@@ -42,11 +42,11 @@ export default {
     .logo-banner {
       align-items: center;
       display: flex;
-      padding: 70px 0;
+      padding: 70px 0 70px 100px;
     }
 
     .logo-wrapper {
-      margin: 0 30px 0 80px;
+      margin: 0 30px 0 0;
       padding-bottom: 0;
       width: 14%;
     }

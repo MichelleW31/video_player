@@ -1,17 +1,21 @@
 <template>
-  <div id = video_player>
-    <div class="video-player">
-      <h3>{{selected_video.title}}</h3>
-      <div class="video">
-        <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
+  <div id = video_player_wrapper>
+    <h3>{{selected_video.title}}</h3>
+    <div class="vid-and-thumbnails">
+      <div class="video-player">
+        <div class="video">
+          <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
+        </div>
+        <div class="views-and-likes">
+          <h4 class="views-copy">{{selected_video.views}} views</h4>
+          <LikesDislikes :selected_video="selected_video"/>
+        </div>
+        <hr>
+      </div>
+      <div class="thumbnails-wrapper">
+        <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
       </div>
     </div>
-    <div class="views-and-likes">
-      <h4 class="views-copy">{{selected_video.views}} views</h4>
-      <LikesDislikes :selected_video="selected_video"/>
-    </div>
-    <hr>
-    <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
     <Comments :selected_video="selected_video"/>
   </div>
 </template>
@@ -57,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-  #video_player{
+  #video_player_wrapper{
     padding: 95px 50px 0;
   }
 
@@ -79,5 +83,28 @@ export default {
     display: flex;
     justify-content: space-between;
     padding-bottom: 40px;
+  }
+
+  @media (min-width: 900px) {
+    #video_player_wrapper{
+      padding: 145px 100px 0;
+    }
+
+    .vid-and-thumbnails {
+      display: flex;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      text-align: left
+    }
+
+    .thumbnails-wrapper {
+      width: 27%;
+    }
+
+    .views-copy {
+      font-size: 1rem;
+    }
   }
 </style>

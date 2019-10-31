@@ -26,9 +26,9 @@ import LikesDislikes from './LikesDislikes'
 import Comments from './Comments'
 
 let videos = [
-  { title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0, comments: [] },
-  { title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0, comments: [] },
-  { title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0, comments: [] }
+  { vid_id: 1, title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0, comments: [] },
+  { vid_id: 2, title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0, comments: [] },
+  { vid_id: 3, title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0, comments: [] }
 ]
 export default {
   data: function () {

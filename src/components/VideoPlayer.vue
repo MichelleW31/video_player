@@ -24,6 +24,7 @@
 import Thumbnails from './Thumbnails.vue'
 import LikesDislikes from './LikesDislikes'
 import Comments from './Comments'
+import axios from 'axios'
 
 let videos = [
   { vid_id: 1, title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0, comments: [] },
@@ -52,6 +53,14 @@ export default {
     selected_video: function () {
       this.increaseViews()
     }
+  },
+  beforeCreate () {
+    axios.get('http://localhost:8081/').then(response => {
+      console.log(response)
+    })
+      .catch(error => {
+        console.log('error', error)
+      })
   },
   created () {
     this.selected_video = this.videos[0]

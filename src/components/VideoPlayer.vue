@@ -1,13 +1,13 @@
 <template>
   <div id = video_player_wrapper>
-    <h3>{{selected_video.title}}</h3>
+    <h3>{{selected_video.vid_name}}</h3>
     <div class="vid-and-thumbnails">
       <div class="video-player">
         <div class="video">
-          <video :id="`${selected_video.path}_video`" controls :src="require(`../assets/videos/${selected_video.path}.mp4`)" ></video>
+          <video :id="`${selected_video.vid_name.toLowerCase().replace(/ /g,'_')}_video`" controls :src="require(`../assets/videos/${selected_video.vid_name.toLowerCase().replace(/ /g,'_')}.mp4`)" ></video>
         </div>
         <div class="views-and-likes">
-          <h4 class="views-copy">{{selected_video.views}} views</h4>
+          <h4 class="views-copy">{{selected_video.vid_views}} views</h4>
           <LikesDislikes :selected_video="selected_video"/>
         </div>
         <hr>
@@ -26,16 +26,11 @@ import LikesDislikes from './LikesDislikes'
 import Comments from './Comments'
 import axios from 'axios'
 
-let videos = [
-  { vid_id: 1, title: 'Who Is 24G', path: 'who_is_24g', views: 0, likes: 0, dislikes: 0, comments: [] },
-  { vid_id: 2, title: 'Future of Drones', path: 'future_of_drones', views: 0, likes: 0, dislikes: 0, comments: [] },
-  { vid_id: 3, title: 'Ces Overview', path: 'ces_overview', views: 0, likes: 0, dislikes: 0, comments: [] }
-]
 export default {
   data: function () {
     return {
-      videos,
-      selected_video: {}
+      videos: [],
+      selected_video: { vid_id: 1, vid_name: 'default', vid_views: 0, likes: 0, dislikes: 0, comments: [] }
     }
   },
   name: 'VideoPlayer',
@@ -55,15 +50,13 @@ export default {
     }
   },
   beforeCreate () {
-    axios.get('http://localhost:8081/').then(response => {
-      console.log(response)
+    axios.get('http://localhost:8081/videos').then(response => {
+      this.videos = response.data
+      this.selected_video = this.videos[0]
     })
       .catch(error => {
         console.log('error', error)
       })
-  },
-  created () {
-    this.selected_video = this.videos[0]
   }
 
 }

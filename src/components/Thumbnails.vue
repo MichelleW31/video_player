@@ -1,6 +1,6 @@
 <template>
   <div class="thumbnail-wrapper">
-      <img v-for="video in videos" :key="video.path" @click="selectVideo(video)" class="thumbnails" :src="require(`../assets/images/${video.path}.jpg`)" :alt="video.path">
+      <img v-for="video in videos" :key="video.vid_name.toLowerCase().replace(/ /g,'_')" @click="selectVideo(video)" class="thumbnails" :src="require(`../assets/images/${video.vid_name.toLowerCase().replace(/ /g,'_')}.jpg`)" :alt="video.vid_name">
   </div>
 </template>
 

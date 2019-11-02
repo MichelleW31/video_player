@@ -81,4 +81,8 @@ export default {
     margin: 0;
     padding: 0;
   }
+
+  .added{
+    fill: #d0870e
+  }
 </style>

@@ -2,7 +2,7 @@ const express = require('express')
 const pool = require('./pg-connection-pool.js').pool
 const app = express()
 
-app.get('/', function (req, res) {
+app.get('/videos', function (req, res) {
   pool.query('SELECT * FROM video').then(function (result) {
     res.send(result.rows)
   })

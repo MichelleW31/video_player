@@ -14,7 +14,7 @@
 <script>
 import LikeIcon from './icons/LikeIcon.vue'
 import DislikeIcon from './icons/DislikeIcon.vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'LikesDislikes',
@@ -25,13 +25,17 @@ export default {
   },
   methods: {
     addLike () {
-      this.selected_video.likes += 1
-      axios.get('http://localhost:8081/').then(response => {
-        console.log(response)
-      })
-        .catch(error => {
-          console.log('error', error)
-        })
+      // axios.post('http://localhost:8081/videos').then(response => {
+      //   console.log(response)
+      // })
+      //   .catch(error => {
+      //     console.log('error', error)
+      //   })
+      let likeIcon = document.getElementById('like')
+      if (!likeIcon.classList.contains('added')) {
+        this.selected_video.likes += 1
+      }
+      likeIcon.classList.toggle('added')
     },
     addDislike () {
       this.selected_video.dislikes += 1

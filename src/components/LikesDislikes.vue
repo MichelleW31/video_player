@@ -1,7 +1,7 @@
 <template>
   <div class="likes-dislikes">
     <div class="likes">
-      <LikeIcon :addLike="addLike"/>
+      <LikeIcon :addLike="addLike" :selected_video="selected_video"/>
       <h4 class="likes-copy">{{selected_video.likes}}</h4>
     </div>
     <div class = "dislikes">
@@ -14,7 +14,7 @@
 <script>
 import LikeIcon from './icons/LikeIcon.vue'
 import DislikeIcon from './icons/DislikeIcon.vue'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'LikesDislikes',
@@ -24,16 +24,17 @@ export default {
     DislikeIcon
   },
   methods: {
-    addLike () {
-      // axios.post('http://localhost:8081/videos').then(response => {
-      //   console.log(response)
-      // })
-      //   .catch(error => {
-      //     console.log('error', error)
-      //   })
+    addLike (id) {
+      axios.put('http://localhost:8081/videos/' + id).then(response => {
+        console.log(response)
+      })
+        .catch(error => {
+          console.log('error', error)
+        })
+
       let likeIcon = document.getElementById('like')
       if (!likeIcon.classList.contains('added')) {
-        this.selected_video.likes += 1
+        // this.selected_video.likes += 1
       }
       likeIcon.classList.toggle('added')
     },

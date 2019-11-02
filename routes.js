@@ -3,15 +3,20 @@ const pool = require('./pg-connection-pool.js').pool
 const app = express()
 
 app.get('/videos', function (req, res) {
-  pool.query('SELECT * FROM video').then(function (result) {
+  pool.query('SELECT * FROM video').then((result) => {
     res.send(result.rows)
   })
 })
 
-// app.post('/', function (req, res) {
-//   const data = req
-//   console.log('data sent from server.js', data)
-//   res.send(data)
-// })
+app.put('/videos/:id', function (req, res) {
+  let id = req.params
+  let value = [id.id]
+  let sql = 'update video set likes = likes + 1 where vid_id = $1::int'
+  pool.query(sql, value).then(() => {
+    pool.query('select * from video').then((result) => {
+      res.send(result.rows)
+    })
+  })
+})
 
 module.exports = app

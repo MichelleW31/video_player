@@ -25,16 +25,15 @@ export default {
   },
   methods: {
     addLike (id) {
-      axios.put('http://localhost:8081/videos/' + id).then(response => {
-        console.log(response)
-      })
-        .catch(error => {
-          console.log('error', error)
-        })
-
+      // Need to set it up so that when like is updating with the database instantly on front end
       let likeIcon = document.getElementById('like')
       if (!likeIcon.classList.contains('added')) {
-        // this.selected_video.likes += 1
+        axios.put('http://localhost:8081/videos/' + id).then(response => {
+          // console.log(response.data)
+        })
+          .catch(error => {
+            console.log('error', error)
+          })
       }
       likeIcon.classList.toggle('added')
     },

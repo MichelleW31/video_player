@@ -42,6 +42,16 @@ export default {
   methods: {
     increaseViews () {
       this.selected_video.views += 1
+    },
+    getVideos () {
+      axios.get('http://localhost:8081/videos').then(response => {
+        this.videos = response.data
+        this.videos.sort((a, b) => parseFloat(a.vid_id) - parseFloat(b.vid_id))
+        this.selected_video = this.videos[0]
+      })
+        .catch(error => {
+          console.log('error', error)
+        })
     }
   },
   watch: {
@@ -49,14 +59,15 @@ export default {
       this.increaseViews()
     }
   },
-  beforeCreate () {
-    axios.get('http://localhost:8081/videos').then(response => {
-      this.videos = response.data
-      this.selected_video = this.videos[0]
-    })
-      .catch(error => {
-        console.log('error', error)
-      })
+  created () {
+    // axios.get('http://localhost:8081/videos').then(response => {
+    //   this.videos = response.data
+    //   this.selected_video = this.videos[0]
+    // })
+    //   .catch(error => {
+    //     console.log('error', error)
+    //   })
+    this.getVideos()
   }
 
 }

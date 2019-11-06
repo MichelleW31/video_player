@@ -13,7 +13,7 @@ app.put('/videos/:id', function (req, res) {
   let value = [id.id]
   let sql = 'update video set likes = likes + 1 where vid_id = $1::int'
   pool.query(sql, value).then(() => {
-    pool.query('select * from video').then((result) => {
+    pool.query('select * from video where vid_id = $1::int', value).then((result) => {
       res.send(result.rows)
     })
   })

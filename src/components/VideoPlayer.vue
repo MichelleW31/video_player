@@ -8,7 +8,7 @@
         </div>
         <div class="views-and-likes">
           <h4 class="views-copy">{{selected_video.vid_views}} views</h4>
-          <LikesDislikes :selected_video="selected_video"/>
+          <LikesDislikes :selected_video="selected_video" @newVideoLikes="selected_video=$event"/>
         </div>
         <hr>
       </div>

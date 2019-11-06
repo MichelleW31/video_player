@@ -29,17 +29,21 @@ export default {
     }
   },
   methods: {
+    postCall (call, id) {
+      axios.put('http://localhost:8081/videos/' + call + id).then(response => {
+        let video = response.data[0]
+        this.$emit('newVideoLikes', video)
+      })
+        .catch(error => {
+          console.log('error', error)
+        })
+    },
     addLike (id) {
-      // Need to set it up so that when like is updating with the database instantly on front end
       let likeIcon = document.getElementById('like')
       if (!likeIcon.classList.contains('added')) {
-        axios.put('http://localhost:8081/videos/' + id).then(response => {
-          let video = response.data[0]
-          this.$emit('newVideoLikes', video)
-        })
-          .catch(error => {
-            console.log('error', error)
-          })
+        this.postCall('addlikes', id)
+      } else {
+        this.postCall('subtractlikes', id)
       }
       likeIcon.classList.toggle('added')
     },

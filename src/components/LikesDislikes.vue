@@ -23,11 +23,6 @@ export default {
     LikeIcon,
     DislikeIcon
   },
-  computed: {
-    newVideo () {
-      return this.selected_video
-    }
-  },
   methods: {
     postCall (call, id) {
       axios.put('http://localhost:8081/videos/' + call + id).then(response => {
@@ -49,6 +44,17 @@ export default {
     },
     addDislike () {
       this.selected_video.dislikes += 1
+    }
+  },
+  computed: {
+    newVideo () {
+      return this.selected_video.vid_name
+    }
+  },
+  watch: {
+    newVideo () {
+      let likeIcon = document.getElementById('like')
+      likeIcon.classList.remove('added')
     }
   }
 }

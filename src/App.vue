@@ -82,7 +82,7 @@ export default {
     padding: 0;
   }
 
-  .added{
+  .added, .removed{
     fill: #d0870e
   }
 </style>

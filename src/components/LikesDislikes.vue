@@ -5,7 +5,7 @@
       <h4 class="likes-copy">{{selected_video.likes}}</h4>
     </div>
     <div class = "dislikes">
-      <DislikeIcon :addDislike="addDislike" />
+      <DislikeIcon :addDislike="addDislike" :selected_video="selected_video"/>
       <h4 class="dislikes-copy">{{selected_video.dislikes}} </h4>
     </div>
   </div>
@@ -36,14 +36,20 @@ export default {
     addLike (id) {
       let likeIcon = document.getElementById('like')
       if (!likeIcon.classList.contains('added')) {
-        this.postCall('addlikes', id)
+        this.postCall('addLikes', id)
       } else {
-        this.postCall('subtractlikes', id)
+        this.postCall('subtractLikes', id)
       }
       likeIcon.classList.toggle('added')
     },
-    addDislike () {
-      this.selected_video.dislikes += 1
+    addDislike (id) {
+      let dislikeIcon = document.getElementById('dislike')
+      if (!dislikeIcon.classList.contains('added')) {
+        this.postCall('addDislikes', id)
+      } else {
+        this.postCall('subtractDislikes', id)
+      }
+      dislikeIcon.classList.toggle('added')
     }
   },
   computed: {
@@ -54,7 +60,9 @@ export default {
   watch: {
     newVideo () {
       let likeIcon = document.getElementById('like')
+      let dislikeIcon = document.getElementById('dislike')
       likeIcon.classList.remove('added')
+      dislikeIcon.classList.remove('added')
     }
   }
 }

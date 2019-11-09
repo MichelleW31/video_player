@@ -35,19 +35,33 @@ export default {
     },
     addLike (id) {
       let likeIcon = document.getElementById('like')
+      let dislikeIcon = document.getElementById('dislike')
+
       if (!likeIcon.classList.contains('added')) {
         this.postCall('addLikes', id)
       } else {
         this.postCall('subtractLikes', id)
       }
+
+      if (dislikeIcon.classList.contains('added')) {
+        dislikeIcon.classList.remove('added')
+        this.postCall('subtractDislikes', id)
+      }
       likeIcon.classList.toggle('added')
     },
     addDislike (id) {
+      let likeIcon = document.getElementById('like')
       let dislikeIcon = document.getElementById('dislike')
+
       if (!dislikeIcon.classList.contains('added')) {
         this.postCall('addDislikes', id)
       } else {
         this.postCall('subtractDislikes', id)
+      }
+
+      if (likeIcon.classList.contains('added')) {
+        likeIcon.classList.remove('added')
+        this.postCall('subtractLikes', id)
       }
       dislikeIcon.classList.toggle('added')
     }

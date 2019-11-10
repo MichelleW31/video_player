@@ -4,7 +4,7 @@
     <textarea name="comments" id="comments" cols="90" rows="10" placeholder="Type up a sweet comment..."></textarea>
     <p id="error-message" class="no-display">Please enter a comment to submit.</p>
     <div class="submit-wrapper">
-      <button class="submit" @click="submitComment(selected_video)">add comment</button>
+      <button class="submit" @click="submitComment(selected_video.vid_id)">add comment</button>
     </div>
     <div class="comment-section">
       <Comment v-for="comment in selected_video.comments" :key="comment" :comment="comment"/>
@@ -14,26 +14,34 @@
 
 <script>
 import Comment from './Comment'
+import axios from 'axios'
 
 export default {
   data: function () {
     return {
-      comments: []
+      comments: [],
+      newComment: { username: 'Michelle W.' }
     }
   },
   name: 'Comments',
   props: ['selected_video'],
   methods: {
-    submitComment (video) {
-      this.$emit('commentSubmit')
+    submitComment (id) {
       let textArea = document.getElementById('comments')
       let error = document.getElementById('error-message')
-      let comment = textArea.value
+
+      this.newComment.comment_id = (new Date()).getTime()
+      this.newComment.vid_id = id
+      this.newComment.comment_text = textArea.value
+
       if (textArea.value === '') {
         error.classList.remove('no-display')
       } else {
         error.classList.add('no-display')
-        video.comments.push(comment)
+        axios.post('http://localhost:8081/videos/addComment' + id, this.newComment).then(response => {
+          console.log(response.data)
+          // FIGURE OUT HOW TO SEND NEW COMMENT AS BODY. IF NOT SEND AS PARAM
+        })
         textArea.value = ''
       }
     }

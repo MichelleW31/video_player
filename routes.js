@@ -65,4 +65,13 @@ app.put('/videos/subtractDislikes:id', function (req, res) {
     })
   })
 })
+
+// POSTING COMMENTS
+app.post('/videos/addComment:id', function (req, res) {
+  console.log(req)
+  // console.log(req.params)
+  // let id = req.params
+  // let value = [id.id]
+})
+
 module.exports = app

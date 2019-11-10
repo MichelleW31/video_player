@@ -13,7 +13,7 @@
         <hr>
       </div>
       <div class="thumbnails-wrapper">
-        <Thumbnails :videos="videos" @videoSelected="selected_video=$event" />
+        <Thumbnails :videos="videos" @videoSelected="selected_video=$event" :increaseViews="increaseViews"/>
       </div>
     </div>
     <Comments :selected_video="selected_video"/>
@@ -40,33 +40,32 @@ export default {
     Comments
   },
   methods: {
-    increaseViews () {
-      this.selected_video.views += 1
+    increaseViews (id) {
+      axios.put('http://localhost:8081/videos/views' + id).then(response => {
+        this.videos = response.data
+        this.sortVideos(this.videos)
+      })
     },
     getVideos () {
       axios.get('http://localhost:8081/videos').then(response => {
         this.videos = response.data
-        this.videos.sort((a, b) => parseFloat(a.vid_id) - parseFloat(b.vid_id))
+        this.sortVideos(this.videos)
         this.selected_video = this.videos[0]
       })
         .catch(error => {
           console.log('error', error)
         })
+    },
+    sortVideos (array) {
+      return array.sort((a, b) => parseFloat(a.vid_id) - parseFloat(b.vid_id))
     }
   },
   watch: {
-    selected_video: function () {
-      this.increaseViews()
+    selected_video: function (newValue) {
+      this.increaseViews(newValue.vid_id)
     }
   },
   created () {
-    // axios.get('http://localhost:8081/videos').then(response => {
-    //   this.videos = response.data
-    //   this.selected_video = this.videos[0]
-    // })
-    //   .catch(error => {
-    //     console.log('error', error)
-    //   })
     this.getVideos()
   }
 

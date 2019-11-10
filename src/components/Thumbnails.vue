@@ -8,7 +8,7 @@
 
 export default {
   name: 'Thumbnails',
-  props: ['videos'],
+  props: ['videos', 'increaseViews'],
   methods: {
     selectVideo (video) {
       this.$emit('videoSelected', video)

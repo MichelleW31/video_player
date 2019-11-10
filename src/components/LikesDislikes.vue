@@ -26,8 +26,7 @@ export default {
   methods: {
     postCall (call, id) {
       axios.put('http://localhost:8081/videos/' + call + id).then(response => {
-        let video = response.data[0]
-        this.$emit('newVideoLikes', video)
+        this.$emit('newVideoLikes')
       })
         .catch(error => {
           console.log('error', error)

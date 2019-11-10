@@ -2,12 +2,26 @@ const express = require('express')
 const pool = require('./pg-connection-pool.js').pool
 const app = express()
 
+// GETTING VIDEOS
 app.get('/videos', function (req, res) {
-  pool.query('SELECT * FROM video').then((result) => {
+  pool.query('select * from video').then((result) => {
     res.send(result.rows)
   })
 })
 
+// POSTING VIEWS
+app.put('/videos/views:id', function (req, res) {
+  let id = req.params
+  let value = [id.id]
+  let sql = 'update video set vid_views = vid_views + 1 where vid_id = $1::int'
+  pool.query(sql, value).then(() => {
+    pool.query('select * from video').then((result) => {
+      res.send(result.rows)
+    })
+  })
+})
+
+// POSTING LIKES AND DISLIKE WHEN ADDED OR REMOVED
 app.put('/videos/addLikes:id', function (req, res) {
   let id = req.params
   let value = [id.id]

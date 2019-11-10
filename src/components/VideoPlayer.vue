@@ -60,8 +60,13 @@ export default {
       return array.sort((a, b) => parseFloat(a.vid_id) - parseFloat(b.vid_id))
     }
   },
+  computed: {
+    newVideo () {
+      return this.selected_video.vid_id
+    }
+  },
   watch: {
-    selected_video: function (newValue) {
+    newVideo: function (newValue) {
       this.increaseViews(newValue.vid_id)
     }
   },

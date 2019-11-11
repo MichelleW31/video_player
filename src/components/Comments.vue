@@ -7,7 +7,7 @@
       <button class="submit" @click="submitComment(selected_video.vid_id)">add comment</button>
     </div>
     <div class="comment-section">
-      <Comment v-for="comment in selected_video.comments" :key="comment" :comment="comment"/>
+      <Comment v-show="comment.vid_id === selected_video.vid_id" v-for="comment in comments" :key="comment.vid_id + comment.username" :comment="comment"/>
     </div>
   </div>
 </template>
@@ -20,17 +20,24 @@ export default {
   data: function () {
     return {
       comments: [],
-      newComment: { username: 'Michelle W.' }
+      newComment: { username: 'Michelle W' }
     }
   },
   name: 'Comments',
   props: ['selected_video'],
   methods: {
+    getComments () {
+      axios.get('http://localhost:8081/comments').then(response => {
+        this.comments = response.data
+      })
+        .catch(error => {
+          console.log('error', error)
+        })
+    },
     submitComment (id) {
       let textArea = document.getElementById('comments')
       let error = document.getElementById('error-message')
 
-      this.newComment.comment_id = (new Date()).getTime()
       this.newComment.vid_id = id
       this.newComment.comment_text = textArea.value
 
@@ -38,16 +45,21 @@ export default {
         error.classList.remove('no-display')
       } else {
         error.classList.add('no-display')
-        axios.post('http://localhost:8081/videos/addComment' + id, this.newComment).then(response => {
-          console.log(response.data)
-          // FIGURE OUT HOW TO SEND NEW COMMENT AS BODY. IF NOT SEND AS PARAM
+        axios.post('http://localhost:8081/comments/addComment', null, { params: this.newComment }).then(response => {
+          this.comments = response.data
         })
+          .catch(error => {
+            console.log('error', error)
+          })
         textArea.value = ''
       }
     }
   },
   components: {
     Comment
+  },
+  created () {
+    this.getComments()
   }
 }
 </script>

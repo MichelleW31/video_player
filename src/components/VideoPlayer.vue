@@ -72,6 +72,7 @@ export default {
   },
   created () {
     this.getVideos()
+    //  set up comments so that they are fetched on load
   }
 
 }

@@ -4,9 +4,9 @@
       <img src="../assets/images/placeholder_avatar.png" alt="Placeholder Image">
     </div>
     <div class="comment-copy">
-      <h4>{{name}}</h4>
+      <h4>{{comment.username}}</h4>
       <TimeSince />
-      <p>{{comment}}</p>
+      <p>{{comment.comment_text}}</p>
     </div>
   </div>
 </template>

@@ -77,7 +77,7 @@ app.get('/comments', function (req, res) {
 app.post('/comments/addComment', function (req, res) {
   let data = req.query
   let sql = 'insert into comments(vid_id, user_name, comment_text) values($1::int, $2::text, $3::text)'
-  let values = [ data.vid_id, data.username, data.comment_text ]
+  let values = [ data.vid_id, data.user_name, data.comment_text ]
 
   pool.query(sql, values).then(() => {
     pool.query('select * from comments where vid_id = $1::int', [data.vid_id]).then((result) => {

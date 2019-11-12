@@ -7,7 +7,7 @@
       <button class="submit" @click="submitComment(selected_video.vid_id)">add comment</button>
     </div>
     <div class="comment-section">
-      <Comment v-show="comment.vid_id === selected_video.vid_id" v-for="comment in comments" :key="comment.vid_id + comment.username" :comment="comment"/>
+      <Comment v-show="comment.vid_id === selected_video.vid_id" v-for="comment in comments" :key="comment.vid_id + comment.user_name" :comment="comment"/>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   data: function () {
     return {
       comments: [],
-      newComment: { username: 'Michelle W' }
+      newComment: { user_name: 'Michelle W' }
     }
   },
   name: 'Comments',

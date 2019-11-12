@@ -4,7 +4,7 @@
       <img src="../assets/images/placeholder_avatar.png" alt="Placeholder Image">
     </div>
     <div class="comment-copy">
-      <h4>{{comment.username}}</h4>
+      <h4>{{comment.user_name}}</h4>
       <TimeSince />
       <p>{{comment.comment_text}}</p>
     </div>
